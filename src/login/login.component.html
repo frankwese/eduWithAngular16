@@ -1,0 +1,42 @@
+<ng-container *ngIf="loggedIn()"
+  ><span class="mat-typography">LoggedIn as {{ (this.loginData | async)?.authorityName }}</span>
+  <button mat-raised-button color="primary" (click)="logout()">logout</button>
+</ng-container>
+<ng-template #dialog_template>
+  <mat-dialog-content class="mat-typography">
+    <div>Please login with your openedu <b>staging</b> credentials.</div>
+    <form #loginForm>
+      <mat-form-field floatLabel="always">
+        <mat-label>USERNAME</mat-label>
+        <input
+          matInput
+          #usernameInput
+          required
+          name="username"
+          id="username"
+          [(ngModel)]="username"
+          autofocus
+          autocapitalize="none"
+        />
+      </mat-form-field>
+      <mat-form-field class="password" floatLabel="always">
+        <mat-label>PASSWORD</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          type="{{ getInputType() }}"
+          required
+          name="password"
+          id="password"
+          [(ngModel)]="password"
+        />
+        <button mat-icon-button type="button" matSuffix (click)="showPassword = !showPassword">
+          <mat-icon>{{ showPassword ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" mat-dialog-close (click)="login()">login</button>
+  </mat-dialog-actions>
+</ng-template>

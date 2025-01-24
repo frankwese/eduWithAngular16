@@ -8,6 +8,8 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {NgMetaWidgetsLibModule} from 'ngx-edu-sharing-metaqs2';
+import {LoginComponent} from '../login/login.component';
+import {EduSharingApiModule} from 'ngx-edu-sharing-api';
 const environment = {
   apiPath: 'https://metaqs-2.staging.openeduhub.net',
   eduSharingPath: 'https://repository.staging.openeduhub.net/edu-sharing',
@@ -33,6 +35,8 @@ const environment = {
       apiPath: environment.apiPath,
       useDummyValues: environment.useDummyValues,
     }),
+    EduSharingApiModule.forRoot({ rootUrl: environment.apiPath }),
+    LoginComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
